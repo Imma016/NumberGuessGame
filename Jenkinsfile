@@ -52,8 +52,10 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 script {
+                    // Introduce a short delay to give the application time to start
+            sleep(time: 10, unit: 'SECONDS')
                     // Verify that the app is running by making a simple HTTP request
-                    def response = sh(script: "curl -s -o /dev/null -w \"%{http_code}\" http://44.223.48.56:9090/NumberGuessGame-1.0-SNAPSHOT", returnStdout: true).trim()
+                    def response = sh(script: "curl -s -o /dev/null -w \"%{http_code}\" http://44.223.48.56:9090/NumberGuessGame-1.0-SNAPSHOT/", returnStdout: true).trim()
                     if (response == "200") {
                         echo "Application deployed successfully!"
                     } else {
