@@ -32,9 +32,7 @@ pipeline {
             steps {
                 script {
                     // Deploy WAR file to Tomcat
-                    sh """
-                    echo '${env.JENKINS_PASSWORD}' | sudo -S cp target/NumberGuessGame-1.0-SNAPSHOT.war /opt/tomcat/webapps/
-                    """
+                    sh "sudo cp target/NumberGuessGame-1.0-SNAPSHOT.war /opt/tomcat/webapps/"
                 }
             }
         }
@@ -44,8 +42,8 @@ pipeline {
                 script {
                     // Restart Tomcat to ensure the application is deployed
                     sh """
-                    echo '${env.JENKINS_PASSWORD}' | sudo -S /opt/tomcat/bin/shutdown.sh
-                    echo '${env.JENKINS_PASSWORD}' | sudo -S /opt/tomcat/bin/startup.sh
+                    sudo -S /opt/tomcat/bin/shutdown.sh
+                    sudo -S /opt/tomcat/bin/startup.sh
                     """
                 }
             }
