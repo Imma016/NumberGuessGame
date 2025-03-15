@@ -15,7 +15,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from the repository
-                git 'https://github.com/Imma016/NumberGuessGame.git'
+                git branch: 'main', url: 'https://github.com/Imma016/NumberGuessGame.git'
             }
         }
 
