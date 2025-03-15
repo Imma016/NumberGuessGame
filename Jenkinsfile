@@ -6,7 +6,7 @@ pipeline {
         MAVEN_HOME = '/usr/share/maven'
         JAVA_HOME = '/usr/lib/jvm/java-17-amazon-corretto'
         TOMCAT_HOME = '/opt/tomcat'
-        TOMCAT_PORT = '8080'
+        TOMCAT_PORT = '9090'
         WAR_FILE = 'target/NumberGuessGame-1.0-SNAPSHOT.war'
         DEPLOY_DIR = "${TOMCAT_HOME}/webapps"
     }
@@ -53,7 +53,7 @@ pipeline {
             steps {
                 script {
                     // Verify that the app is running by making a simple HTTP request
-                    def response = sh(script: "curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/NumberGuessGame-1.0-SNAPSHOT", returnStdout: true).trim()
+                    def response = sh(script: "curl -s -o /dev/null -w \"%{http_code}\" http://localhost:9090/NumberGuessGame-1.0-SNAPSHOT", returnStdout: true).trim()
                     if (response == "200") {
                         echo "Application deployed successfully!"
                     } else {
